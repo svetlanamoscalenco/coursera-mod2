@@ -1,0 +1,43 @@
+<html ng-app="ShoppingListCheckoff">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	
+	<style>
+		.product{ padding: 2px 0;}
+		.product .col-xs-8{ padding: 6px 0;}
+		
+		.redMessage{color: red;}
+		.greenMessage{color: green;}
+		.redBorder{border-color: red;}
+		.greenBorder{border-color: green;}
+	</style>
+	
+</head>
+<body>
+	<div class="container">
+		<div ng-controller="ToBuyController as toBuy" class="col-xs-5 col-xs-offset-1">
+			<header><h3>Shopping list</h3></header>
+			<h3 ng-if="!toBuy.products[0]" class="greenMessage">Everything is bought! Ready to go home.</h3>
+			<div ng-repeat="product in toBuy.products" class="product">
+				<div class="col-xs-8">
+					Buy {{product.quantity}} of {{product.name}} 
+				</div>
+				<div class="col-xs-4">
+					<button ng-click="toBuy.alreadyBought($index)" class="btn">Already Bought <span class="glyphicon glyphicon-ok"></span></button>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div ng-controller="AlreadyBoughtController as alreadyBought" class="col-xs-5 col-xs-offset-1">
+			<header><h3>Bought Items</h3></header>
+			<h3 ng-if="!alreadyBought.products[0]" class="redMessage">Nothing bought yet!</h3>
+			<div ng-repeat="product in alreadyBought.products">
+				<span class="glyphicon glyphicon-ok"></span> Bought {{product.quantity}} of {{product.name}}
+			</div>
+		</div>
+	</div>
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</body>
+</html>
