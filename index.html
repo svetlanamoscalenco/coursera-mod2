@@ -18,20 +18,20 @@
 	<div class="container">
 		<div ng-controller="ToBuyController as toBuy" class="col-xs-5 col-xs-offset-1">
 			<header><h3>Shopping list</h3></header>
-			<h3 ng-if="!toBuy.products[0]" class="greenMessage">Everything is bought! Ready to go home.</h3>
+			<h3 ng-if="toBuy.products.length == 0" class="greenMessage">Everything is bought! Ready to go home.</h3>
 			<div ng-repeat="product in toBuy.products" class="product">
 				<div class="col-xs-8">
 					Buy {{product.quantity}} of {{product.name}} 
 				</div>
 				<div class="col-xs-4">
-					<button ng-click="toBuy.alreadyBought($index)" class="btn">Already Bought <span class="glyphicon glyphicon-ok"></span></button>
+					<button ng-click="toBuy.alreadyBought($index)" class="btn">Bought <span class="glyphicon glyphicon-ok"></span></button>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
 		<div ng-controller="AlreadyBoughtController as alreadyBought" class="col-xs-5 col-xs-offset-1">
 			<header><h3>Bought Items</h3></header>
-			<h3 ng-if="!alreadyBought.products[0]" class="redMessage">Nothing bought yet!</h3>
+			<h3 ng-if="alreadyBought.products.length == 0" class="redMessage">Nothing bought yet!</h3>
 			<div ng-repeat="product in alreadyBought.products">
 				<span class="glyphicon glyphicon-ok"></span> Bought {{product.quantity}} of {{product.name}}
 			</div>
